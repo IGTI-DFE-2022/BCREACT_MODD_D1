@@ -5,7 +5,7 @@ import { RankingProcessor } from "./RankingProcessor";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Table({ year }) {
-  const { data, error } = useSWR("http://localhost:3001/2003", fetcher);
+  const { data, error } = useSWR(`http://localhost:3001/${year}`, fetcher);
 
   let ranked = RankingProcessor(data);
 

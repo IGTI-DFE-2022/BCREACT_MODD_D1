@@ -1,7 +1,12 @@
+import { useState } from "react";
 import Table from "./Table";
 
 export default function App() {
   console.log("Teste no console do navegador");
+
+  const [year, setYear] = useState(2003);
+
+  const years = Array.from({ length: 13 }, (_, i) => i + 2003);
 
   return (
     <div>
@@ -15,7 +20,15 @@ export default function App() {
 
       <main>
         <div className="container mx-auto p-4">
-          <Table />
+          <select value={year} onChange={(e) => setYear(e.target.value)}>
+            {years.map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
+          </select>
+
+          <Table year={year} />
         </div>
       </main>
     </div>
